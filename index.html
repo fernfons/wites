@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Insurance Policy Coverage Analyzer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-labelledby="app-title">
+        <div class="workspace__header">
+          <div>
+            <p class="eyebrow">Policy Review Workspace</p>
+            <h1 id="app-title">Insurance Policy Coverage Analyzer</h1>
+          </div>
+          <button class="icon-button" id="resetButton" type="button" title="Reset workspace" aria-label="Reset workspace">
+            <span aria-hidden="true">Reset</span>
+          </button>
+        </div>
+
+        <div class="panel-grid">
+          <form class="panel controls" id="policyForm">
+            <label class="upload-zone" for="policyFiles">
+              <input id="policyFiles" name="policyFiles" type="file" accept="application/pdf" multiple />
+              <span class="upload-zone__icon" aria-hidden="true">+</span>
+              <span>
+                <strong>Upload policy PDFs</strong>
+                <small>Declarations, forms, endorsements, schedules, and exclusions</small>
+              </span>
+            </label>
+
+            <div class="file-list" id="fileList" aria-live="polite"></div>
+
+            <label class="field">
+              <span>Policy text</span>
+              <textarea id="policyText" name="policyText" rows="11" placeholder="Paste extracted policy text here. Include declarations, endorsements, exclusions, definitions, schedules, and conditions."></textarea>
+            </label>
+
+            <div class="field-grid">
+              <label class="field">
+                <span>Policy type</span>
+                <select id="policyType" name="policyType">
+                  <option value="">Auto-identify from document</option>
+                  <option>Homeowners</option>
+                  <option>Condo</option>
+                  <option>Commercial Property</option>
+                  <option>Flood</option>
+                  <option>Auto</option>
+                  <option>General Liability</option>
+                  <option>Business Owner Policy</option>
+                  <option>Umbrella</option>
+                  <option>Other</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Analysis mode</span>
+                <select id="analysisMode" name="analysisMode">
+                  <option value="full">Full policy report</option>
+                  <option value="claim">Claim scenario answer</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="field scenario-field" id="scenarioField">
+              <span>Claim scenario</span>
+              <textarea id="claimScenario" name="claimScenario" rows="4" placeholder="Example: A windstorm damaged the roof and rain entered through the opening. Is interior water damage covered?"></textarea>
+            </label>
+
+            <div class="action-row">
+              <button class="primary-button" id="analyzeButton" type="submit">Analyze Policy</button>
+              <button class="secondary-button" id="copyButton" type="button">Copy Output</button>
+            </div>
+          </form>
+
+          <section class="panel report-panel" aria-labelledby="report-title">
+            <div class="report-panel__header">
+              <div>
+                <p class="eyebrow">Generated Output</p>
+                <h2 id="report-title">AI-ready policy analysis request</h2>
+              </div>
+              <span class="status-pill" id="statusPill">Ready</span>
+            </div>
+            <pre class="report-output" id="reportOutput" tabindex="0"></pre>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
